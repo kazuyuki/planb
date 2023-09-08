@@ -9,7 +9,9 @@
   "short_name": "kazuyuki.github",
   "start_url": "https://kazuyuki.github.io/planb",
   "theme_color": "#ffffff",
-  "categories": [],
+  "categories": [
+    "sports"
+  ],
   "screenshots": [],
   "icons": [
     {
