@@ -1,9 +1,21 @@
 {
-  "name": "Planner for Basketball",
-  "short_name": "PlanB",
-  "theme_color": "#2196f3",
-  "background_color": "#2196f3",
+  "background_color": "#ffffff",
+  "description": "Planner for Basketball",
+  "dir": "ltr",
   "display": "standalone",
+  "name": "kazuyuki.github",
+  "orientation": "any",
   "scope": "/",
-  "start_url": "/"
+  "short_name": "kazuyuki.github",
+  "start_url": "https://kazuyuki.github.io/planb",
+  "theme_color": "#ffffff",
+  "categories": [],
+  "screenshots": [],
+  "icons": [
+    {
+      "src": "icon.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ]
 }
