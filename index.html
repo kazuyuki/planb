@@ -6,14 +6,15 @@
 <link rel="manifest" href="manifest.json" />
 <link rel="apple-touch-icon" sizes="512x512" href="icon.png">
 <title>PlanB - Basketball Planner</title>
+</head>
+
+<body>
 <script>
   if (typeof navigator.serviceWorker !== 'undefined') {
     navigator.serviceWorker.register('sw.js')
   }
 </script>
-</head>
 
-<body>
 <form name="member">
 <div id="tableID"></div>
 <p><table>
