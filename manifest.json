@@ -8,6 +8,7 @@
   "scope": "/",
   "short_name": "kazuyuki.github",
   "start_url": "https://kazuyuki.github.io/planb",
+  "id": "https://kazuyuki.github.io/planb",
   "theme_color": "#ffffff",
   "categories": [
     "sports"
