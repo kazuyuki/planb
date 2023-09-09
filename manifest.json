@@ -9,11 +9,21 @@
   "short_name": "kazuyuki.github",
   "start_url": "https://kazuyuki.github.io/planb",
   "id": "https://kazuyuki.github.io/planb",
+  "launch_handler": {
+    "client_mode": ["navigate-existing, auto"]
+  },
   "theme_color": "#ffffff",
   "categories": [
     "sports"
   ],
-  "screenshots": [],
+  "screenshots" : [
+    {
+      "src": "screenshot.jpg",
+      "sizes": "1280x720",
+      "type": "image/jpg",
+      "platform": "wide",
+    }
+  ],
   "icons": [
     {
       "src": "icon.png",
