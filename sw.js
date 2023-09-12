@@ -1,9 +1,14 @@
-/*
-self.addEventListener("fetch", event => {
-  console.log('WORKER: Fetching', event.request);
+self.addEventListener("install", event => {
+  console.log('WORKER: Install', event.request);
 });
-*/
+self.addEventListener("activate", event => {
+  console.log('WORKER: Activate', event.request);
+});
+self.addEventListener("fetch", event => {
+  console.log('WORKER: Fetch', event.request);
+});
 
+/*
 // This is the "Offline copy of pages" service worker
 const CACHE = "pwabuilder-offline";
 importScripts('https://storage.googleapis.com/workbox-cdn/releases/5.1.2/workbox-sw.js');
@@ -35,3 +40,4 @@ self.addEventListener('install', event => {
         cache.addAll(PRECACHE_ASSETS);
     })());
 });
+*/
