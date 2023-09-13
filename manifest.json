@@ -19,8 +19,7 @@
       "name": "About",
       "url": "/planb/about.html"
     }
-  ]
-  
+  ],  
   "launch_handler": {
     "client_mode": "auto"
   },
