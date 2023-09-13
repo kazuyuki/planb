@@ -3,6 +3,11 @@
   "description": "Planner for Basketball",
   "dir": "ltr",
   "display": "standalone",
+  "display_override": [
+    "window-controls-overlay",
+    "standalone",
+    "browser"
+  ],
   "name": "kazuyuki.github",
   "orientation": "any",
   "scope": "/",
