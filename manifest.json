@@ -8,12 +8,12 @@
     "standalone",
     "browser"
   ],
-  "name": "kazuyuki.github",
+  "name": "Plan B - Planner for Mini Basketball",
+  "short_name": "PlanB",
   "orientation": "any",
-  "scope": "/",
-  "short_name": "kazuyuki.github",
-  "start_url": "https://kazuyuki.github.io/planb",
-  "id": "https://kazuyuki.github.io/planb",
+  "scope": "/planb/",
+  "start_url": "/planb/",
+  "id": "planb",
   "shortcuts": [
     {
       "name": "About",
