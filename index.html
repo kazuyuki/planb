@@ -7,28 +7,152 @@
 <link rel="apple-touch-icon" sizes="512x512" href="/planb/assets/icon.png">
 <link rel="shortcut icon" type="image/x-icon" href="/planb/favicon.ico">
 <title>PlanB - Basketball Planner</title>
-</head>
+<script tyep="text/javascript">
 
-<body>
-<script>
-  if (typeof navigator.serviceWorker !== 'undefined') {
+if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('sw.js')
-  }
-</script>
+}
 
-<form name="member">
-<div id="tableID"></div>
-<p><table>
-<tr>
-<td><label for="name6">6</label>
-<td><input id="name6" type="text" >
-<td><input type="button" value="add">
-<td>=></td>
-<td><label for="members6">6</label>
-<td><textarea id="members6"></textarea>
-<td><input type="button" value="del">
-</tr>
+let members = [[],[],[],[],[],[]];
+let NameLenMax = 0;
+let editor = 0;
+
+window.onload = function(){
+	load();
+	drawOrder();
+}
+
+function trans() {
+	if (editor){
+		editor = 0;
+		drawOrder();
+	} else {
+		editor = 1;
+		drawEditor();
+	}
+}
+
+function add_member(grade){
+	var name = document.getElementById(grade).value;
+	document.getElementById(grade).value = "";
+	members[grade-1].push(name);
+	drawEditor();
+}
+
+function del_member(id){
+	var gr = id.substr(0,1);
+	var nu = id.substr(2);
+	members[gr].splice(nu, 1);
+	drawEditor();
+}
+
+function save(){
+	localStorage.setItem('members', JSON.stringify(members));
+}
+
+function load(){
+	var d = JSON.parse(localStorage.getItem('members'));
+	if (d == undefined){
+		members = [[],[],[],[],[],[]];
+	} else {
+		members = d;
+	}
+	//drawEditor();
+}
+
+function erase() {
+	localStorage.removeItem('members');
+}
+
+function drawOrder() {
+	removeContents();
+	let table = document.getElementById("tid");
+
+	//## Table Header
+	tr = table.insertRow(-1);
+	for ( let i=0; i<3; i++ ){
+		th = document.createElement("th");
+		tr.appendChild(th);
+	}
+
+	// Quarter
+	for ( let i=1; i<=4; i++ ){
+		th = document.createElement("th");
+		th.innerHTML = i;
+		tr.appendChild(th);
+	}
+
+	for ( let i = members.length -1; i>=0; i-- ) {
+		for ( let j=0; j< members[i].length; j++ ) {
+			tr = table.insertRow(-1);
+			//tr.insertCell(-1).innerHTML = j+1;
+			chkbx = document.createElement("input");
+			chkbx.setAttribute("type", "checkbox");
+			chkbx.setAttribute("id", i + "." + j);
+			tr.insertCell(-1).appendChild(chkbx);
+			tr.insertCell(-1).innerHTML = members[i][j];
+			if ( NameLenMax < members[i][j].length ) NameLenMax = members[i][j].length;
+			for ( q = 1; q <= 6; q++ ) {
+				td = tr.insertCell(-1);
+				chkbx = document.createElement("input");
+				chkbx.setAttribute("type", "checkbox");
+				chkbx.setAttribute("id", i + "." + j + "." + q);
+				td.appendChild(chkbx);
+			}
+		}
+
+		// Spacing between school year
+		tr = table.insertRow(-1);
+		td = tr.insertCell(-1).innerHTML = "----";
+	}
+}
+
+function drawEditor() {
+
+	removeContents();
+	let table = document.getElementById("tid");
+	for ( let i = members.length; i>=0; i-- ) {
+		if ( members[i] == undefined){ continue }
+		let p = document.createElement('p');
+		p.innerHTML = (i+1) + "年 名前 <input type='text' id='" + (i+1) + "'><button type='submit' onclick=add_member(" + (i+1) + ")>➕</button>";
+		table.appendChild(p);
+
+		for ( let j = 0; j < members[i].length; j++ ) {
+			if ( members[i][j] == null ) { continue }
+			let p = document.createElement('p');
+			let id = i + '-' + j;
+			p.setAttribute("id", id);
+			let bu = "<button onclick=del_member('" + id + "')> ➖ </button> ";
+			p.innerHTML = bu + members[i][j];
+			table.appendChild(p);
+		}
+	}
+}
+
+function removeContents(){
+	let table = document.getElementById("tid");
+	for ( let i = 1; i <= members.length; i++ ) {
+		while ( table.children[0] != undefined ){
+			table.removeChild(table.children[0]);
+		}
+	}
+}
+
+</script>
+</head>
+<body>
+<p>
+<button onclick=save() ><font size=+1>📥 保存</font></button>
+<button onclick=load() ><font size=+1>📤 読込</font></button>
+<button onclick=erase()><font size=+1>🗑 削除</font></button>
+<button onclick=trans()><font size=+1>🖊 切替</font></button>
+</p>
+
+<hr>
+
+<table id="tid">
 </table>
-</form>
+
+<hr>
 </body>
 </html>
